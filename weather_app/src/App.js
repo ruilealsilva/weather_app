@@ -1,26 +1,85 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import CityButton from "./CityButton";
+import DayCard from "./DayCard";
 
-function App() {
+const cities = [
+  { name: "Lisbon" },
+  { name: "Madrid" },
+  { name: "Paris" },
+  { name: "London" },
+  { name: "Berlin" }
+];
+
+const days = [
+  {
+    day: "Monday",
+    icon: "an icon",
+    currentTemp: 13,
+    minTemp: 8,
+    maxTemp: 18,
+    windSpeed: 5,
+    windDir: 5
+  },
+  {
+    day: "Tuesday",
+    icon: "an icon",
+    currentTemp: 13,
+    minTemp: 8,
+    maxTemp: 18,
+    windSpeed: 5,
+    windDir: 5
+  },
+  {
+    day: "Wednesday",
+    icon: "an icon",
+    currentTemp: 13,
+    minTemp: 8,
+    maxTemp: 18,
+    windSpeed: 5,
+    windDir: 5
+  },
+  {
+    day: "Thursday",
+    icon: "an icon",
+    currentTemp: 13,
+    minTemp: 8,
+    maxTemp: 18,
+    windSpeed: 5,
+    windDir: 5
+  },
+  {
+    day: "Friday",
+    icon: "an icon",
+    currentTemp: 13,
+    minTemp: 8,
+    maxTemp: 18,
+    windSpeed: 5,
+    windDir: 5
+  }
+];
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>
+        {cities.map(city => (
+          <CityButton cityName={city.name} />
+        ))}
+      </div>
+      <div>
+        {days.map(day => (
+          <DayCard
+            weekDay={day.day}
+            icon={day.icon}
+            currentTemp={day.currentTemp}
+            minTemp={day.minTemp}
+            maxTemp={day.maxTemp}
+            windSpeed={day.windSpeed}
+            windDir={day.windDir}
+          />
+        ))}
+      </div>
     </div>
   );
-}
-
+};
 export default App;
