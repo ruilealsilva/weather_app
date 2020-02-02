@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import API from "./CONSTANTS";
-import { useFetchWithWoeid } from "./services/api";
+import { useApi } from "./services/api";
 import HeaderItem from "./components/HeaderItem";
 import Card from "./components/Card";
-import { cities, transformData } from "./utils";
+import { transformData } from "./utils";
 
 const Container = styled.div`
   background-color: #f2f2f2;
@@ -28,10 +28,22 @@ const Body = styled.div`
   flex-wrap: wrap;
 `;
 
+const LoadingText = styled.h1`
+  text-align: center;
+`;
+
+const cities = [
+  { id: 1, woeid: 742676, name: "Lisbon" },
+  { id: 2, woeid: 766273, name: "Madrid" },
+  { id: 3, woeid: 615702, name: "Paris" },
+  { id: 4, woeid: 44418, name: "London" },
+  { id: 5, woeid: 638242, name: "Berlin" }
+];
+
 const App = () => {
   const [woeid, setWoeid] = useState(742676);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const { data, isLoading } = useFetchWithWoeid(`${API}/location/`, woeid, {
+  const { data, isLoading } = useApi(`${API}/location/${woeid}`, {
     isLoading: true,
     data: null
   });
@@ -52,25 +64,24 @@ const App = () => {
           />
         ))}
       </Header>
-      {isLoading ? (
-        "loading"
-      ) : (
-        <Body>
-          {days &&
-            days.map(day => (
-              <Card
-                key={day.id}
-                weekDay={day.name}
-                icon={day.icon}
-                currentTemp={day.currentTemp}
-                minTemp={day.minTemp}
-                maxTemp={day.maxTemp}
-                windSpeed={day.windSpeed}
-                windDir={day.windDir}
-              />
-            ))}
-        </Body>
-      )}
+      <Body>
+        {isLoading ? (
+          <LoadingText>Loading. Please Wait...</LoadingText>
+        ) : (
+          days.map(day => (
+            <Card
+              key={day.id}
+              weekDay={day.name}
+              iconName={day.iconName}
+              currentTemp={day.currentTemp}
+              minTemp={day.minTemp}
+              maxTemp={day.maxTemp}
+              windSpeed={day.windSpeed}
+              windDir={day.windDir}
+            />
+          ))
+        )}
+      </Body>
     </Container>
   );
 };

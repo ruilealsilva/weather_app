@@ -37,7 +37,7 @@ const Label = styled.p`
   font-weight: 700;
 `;
 
-const Sub = styled.p`
+const MiddleValue = styled.p`
   font-size: 2rem;
 `;
 
@@ -45,7 +45,7 @@ const Value = styled.p``;
 
 const Card = ({
   weekDay,
-  icon,
+  iconName,
   currentTemp,
   minTemp,
   maxTemp,
@@ -55,10 +55,10 @@ const Card = ({
   <Container>
     <Title>{weekDay}</Title>
     <Img
-      src={`https://www.metaweather.com/static/img/weather/${icon}.svg`}
-      alt={icon}
+      src={`https://www.metaweather.com/static/img/weather/${iconName}.svg`}
+      alt={iconName}
     />
-    <Sub>{currentTemp}</Sub>
+    <MiddleValue>{currentTemp}</MiddleValue>
     <BottomWrapper>
       <BlocksContainer>
         <Block>

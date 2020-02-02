@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export function useFetchWithWoeid(url, woeid, defaultRes) {
+export function useApi(url, defaultRes) {
   const [data, setData] = useState(defaultRes);
 
-  async function getApiData(url, woeid) {
+  async function getApiData(url) {
     try {
       setData({ isLoading: true });
-      const data = await axios.get(url + woeid);
+      const data = await axios.get(url);
       setData({ isLoading: false, data, error: false });
     } catch (e) {
       setData({ error: true });
@@ -16,10 +16,10 @@ export function useFetchWithWoeid(url, woeid, defaultRes) {
 
   useEffect(() => {
     async function fetchData() {
-      await getApiData(url, woeid);
+      await getApiData(url);
     }
     fetchData();
-  }, [url, woeid]);
+  }, [url]);
 
   if (data) {
     return data;
