@@ -4,19 +4,16 @@ import styled from "styled-components";
 const ListItem = styled.a`
   color: white;
   padding: 15px 30px;
-  border: none;
-  border-radius: 40px;
   margin: 0px 15px;
-  background-color: ${({ isSelected }) => (isSelected ? "#ffa500" : "#192841")};
+  background-color: ${({ isSelected }) =>
+    isSelected ? "#ffa500" : "transparent"};
   font-weight: 700;
-  font-transform: uppercase;
   font-size: 1rem;
   cursor: pointer;
-  point-events: @media (max-width: 768px) {
+  @media (max-width: 768px) {
     margin: 0;
-    border: 2px solid #fff;
     border-radius: 0;
-    padding: 10px 5px;
+    padding: 15px;
   }
 `;
 

@@ -11,15 +11,18 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
 `;
 
 const Header = styled.div`
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: #192841;
   display: flex;
   justify-content: center;
-  padding: 40px 0;
+  padding: 40px 10px;
   flex-wrap: wrap;
+  @media (max-width: 768px) {
+    background-color: #192841;
+  }
 `;
 
 const Body = styled.div`
